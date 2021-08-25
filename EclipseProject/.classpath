@@ -7,5 +7,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/thekoon/eclipse-workspace/WebCrawler_JAVA/EclipseProject/src/lib/jsoup-1.14.1.jar"/>
+	<classpathentry kind="lib" path="/Users/thekoon/eclipse-workspace/WebCrawler_JAVA/EclipseProject/src/lib/sqlite-jdbc-3.36.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
