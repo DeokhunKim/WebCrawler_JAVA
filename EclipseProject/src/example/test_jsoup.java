@@ -168,8 +168,7 @@ public class test_jsoup {
 		String urlStr3 = "https://namu.wiki/random";
 		try
 		{
-			//Connection con = Jsoup.connect(urlStr3) ;
-			Connection con = Jsoup.connect(urlStr2)
+			Connection con = Jsoup.connect("https://namu.wiki/w/대한민국")
 					.userAgent("Jsoup Scraper");
 
 			Document doc = con.get();
@@ -215,7 +214,7 @@ public class test_jsoup {
 			for( Element ele : allElements )
 			{
 				Attributes attr = ele.attributes();	
-				System.out.println(attr.html());
+				//System.out.println(attr.html());
 			}
 			
 			
