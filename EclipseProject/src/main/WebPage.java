@@ -21,15 +21,22 @@ public class WebPage {
 	private String m_connUrl = "" ;
 	private String m_dirUrl = "" ;
 	
+	private boolean m_isSuccessConnect = true ;
+
 	private Set<String> m_nextUrlSet = new HashSet<String>() ;
 	
 	private Connection m_conn = null ;
 	private Element m_elementBody = null ;
 	
+	private WebPageTableFeature m_tableFeature = new WebPageTableFeature() ;
 	
-	public WebPage( String url )
+	public WebPage( String url, String rootUrl, String prevUrl, int level )
 	{
 		m_url = url ;
+		m_tableFeature.url = url ;
+		m_tableFeature.rootUrl = rootUrl ;
+		m_tableFeature.prevUrl = prevUrl ;
+		m_tableFeature.level = level ;
 	}	
 	
 	public void ReadPage()
@@ -44,7 +51,10 @@ public class WebPage {
 			m_connUrl = doc.location() ;
 		} catch (IOException e) 
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
+			System.out.println("Connect fail: " + m_url );
+			m_isSuccessConnect = false ;
+			return ;
 		}
 		
 		// Get directory url
@@ -73,19 +83,19 @@ public class WebPage {
 		if( herfUrl.equals("") )
 		{
 			//TODO log remove
-			System.out.println("[log] remove empty") ;
+			//System.out.println("[log] remove empty") ;
 			return "" ;
 		}
 		else if( herfUrl.charAt(0) == '#' )
 		{
 			//TODO log remove
-			System.out.println("[log] remove inner link - " + herfUrl ) ;
+			//System.out.println("[log] remove inner link - " + herfUrl ) ;
 			return "" ;
 		}
 		else if( herfUrl.indexOf("@") != -1 )
 		{
 			//TODO log remove
-			System.out.println("[log] remove presmably by email - " + herfUrl ) ;
+			//System.out.println("[log] remove presmably by email - " + herfUrl ) ;
 			return "" ;
 		}
 		
@@ -108,6 +118,12 @@ public class WebPage {
 				newUrl = GetDirUrl( dirUrl ) + herfUrl ;				
 			}
 		}
+		else if ( herfUrl.length() < 5 )
+		{
+			System.out.println("What the url too short? " + herfUrl );
+			return "";
+			
+		}
 		else if( herfUrl.substring(0, 4).equals("http") )
 		{
 			newUrl = herfUrl ;
@@ -119,11 +135,25 @@ public class WebPage {
 		
 		
 		//TODO log remove
-		System.out.println("[log] Create new link \"" + newUrl  
-				+ "\" origin \"" + herfUrl + "\"" ) ;
+		//System.out.println("[log] Create new link \"" + newUrl  
+		//		+ "\" origin \"" + herfUrl + "\"" ) ;
 		
 		return newUrl ;
 	}
 	
+	public boolean GetConnectStatus() 
+	{
+		return m_isSuccessConnect;
+	}
+	
+	public WebPageTableFeature GetTableFeature() 
+	{
+		return m_tableFeature ;
+	}
+	
+	public Set<String> GetNextUrlSet()
+	{
+		return m_nextUrlSet ;
+	}
 	
 }

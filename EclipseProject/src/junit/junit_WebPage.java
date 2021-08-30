@@ -18,7 +18,7 @@ class junit_WebPage {
 	@Test
 	void test_GetDirUrl() throws NoSuchMethodException, SecurityException 
 	{
-		WebPage web = new WebPage("");
+		WebPage web = new WebPage("","","",0);
 		Method method = web.getClass().getDeclaredMethod("GetDirUrl", String.class ) ;
 		method.setAccessible(true) ;
 		String res = "";
@@ -39,7 +39,7 @@ class junit_WebPage {
 	@Test
 	void test_CreateNewLink() throws NoSuchMethodException, SecurityException, IOException 
 	{
-		WebPage web = new WebPage("");
+		WebPage web = new WebPage("","","",0);
 		Method method = web.getClass().getDeclaredMethod("CreateNewLink", 
 				String.class, String.class, String.class ) ;
 		method.setAccessible(true) ;

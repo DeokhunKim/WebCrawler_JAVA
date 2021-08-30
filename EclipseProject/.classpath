@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="lib" path="/Users/thekoon/eclipse-workspace/WebCrawler_JAVA/EclipseProject/Lib/jsoup-1.14.1.jar"/>
+	<classpathentry kind="lib" path="/Users/thekoon/eclipse-workspace/WebCrawler_JAVA/EclipseProject/Lib/sqlite-jdbc-3.36.0.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
